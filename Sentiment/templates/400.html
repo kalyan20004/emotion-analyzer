@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 - Page Not Found | Emotion Analyzer</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Orbitron:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="background-grid"></div>
+    <div class="neon-particles">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <header>
+      <div class="logo">
+        <i class="fas fa-brain"></i>
+        <span class="neon-text">Emotion AI</span>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="error-page">
+        <div class="error-content">
+          <div class="error-code neon-text">404</div>
+          <h1 class="error-title">Page Not Found</h1>
+          <p class="error-description">
+            The page you're looking for seems to have vanished into the digital
+            void.
+            <br />Don't worry, even our AI gets confused sometimes!
+          </p>
+          <div class="error-actions">
+            <a
+              href="{{ url_for('index') }}"
+              class="btn primary-btn neon-button"
+            >
+              <i class="fas fa-home"></i> Go Home
+            </a>
+            <button onclick="history.back()" class="btn secondary-btn">
+              <i class="fas fa-arrow-left"></i> Go Back
+            </button>
+          </div>
+          <div class="error-suggestions">
+            <h3>What you can do:</h3>
+            <ul>
+              <li>
+                <i class="fas fa-search"></i> Try analyzing some text emotions
+              </li>
+              <li><i class="fas fa-chart-bar"></i> Check out the dashboard</li>
+              <li>
+                <i class="fas fa-heart"></i> Test our AI with your favorite
+                quotes
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="error-animation">
+          <div class="floating-icons">
+            <i class="fas fa-robot neon-icon-pulse"></i>
+            <i class="fas fa-question-circle neon-icon-pulse"></i>
+            <i class="fas fa-search neon-icon-pulse"></i>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-content">
+        <div class="footer-logo">
+          <i class="fas fa-brain neon-icon"></i>
+          <span>Emotion Analyzer</span>
+        </div>
+        <p>BERT-based Multi-label Emotion Classification</p>
+      </div>
+    </footer>
+
+    <style>
+      .error-page {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 60vh;
+        text-align: center;
+        padding: 2rem;
+      }
+
+      .error-code {
+        font-size: 8rem;
+        font-family: "Orbitron", monospace;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        background: linear-gradient(
+          45deg,
+          var(--neon-primary),
+          var(--neon-secondary)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: pulse-glow 2s infinite alternate;
+      }
+
+      .error-title {
+        font-size: 2.5rem;
+        color: var(--text-primary);
+        margin-bottom: 1rem;
+        font-family: "Orbitron", monospace;
+      }
+
+      .error-description {
+        font-size: 1.1rem;
+        color: var(--muted-text);
+        margin-bottom: 2rem;
+        max-width: 500px;
+        line-height: 1.6;
+      }
+
+      .error-actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+      }
+
+      .error-suggestions {
+        background: rgba(0, 243, 255, 0.1);
+        border: 1px solid rgba(0, 243, 255, 0.3);
+        border-radius: 15px;
+        padding: 1.5rem;
+        margin-top: 2rem;
+        backdrop-filter: blur(10px);
+      }
+
+      .error-suggestions h3 {
+        color: var(--neon-secondary);
+        margin-bottom: 1rem;
+      }
+
+      .error-suggestions ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .error-suggestions li {
+        padding: 0.5rem 0;
+        color: var(--muted-text);
+        text-align: left;
+      }
+
+      .error-suggestions li i {
+        color: var(--neon-primary);
+        margin-right: 0.5rem;
+        width: 20px;
+      }
+
+      .floating-icons {
+        display: flex;
+        gap: 2rem;
+        justify-content: center;
+        margin-top: 2rem;
+      }
+
+      .floating-icons i {
+        font-size: 2rem;
+        animation: float 3s ease-in-out infinite;
+      }
+
+      .floating-icons i:nth-child(2) {
+        animation-delay: -1s;
+      }
+
+      .floating-icons i:nth-child(3) {
+        animation-delay: -2s;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+      }
+
+      @keyframes pulse-glow {
+        0% {
+          text-shadow: 0 0 20px var(--neon-primary);
+        }
+        100% {
+          text-shadow: 0 0 40px var(--neon-primary),
+            0 0 60px var(--neon-secondary);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .error-code {
+          font-size: 5rem;
+        }
+
+        .error-title {
+          font-size: 2rem;
+        }
+
+        .error-actions {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .floating-icons {
+          gap: 1rem;
+        }
+      }
+    </style>
+  </body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Emotion Analyzer</title>
+    <!-- Updated path for Flask static files -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Orbitron:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="background-grid"></div>
+    <div class="neon-particles">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <header>
+      <div class="logo">
+        <i class="fas fa-brain"></i>
+        <span class="neon-text">Emotion AI</span>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="hero">
+        <h1 class="neon-title">Emotion Analyzer</h1>
+        <p class="description">
+          <span class="highlight">Advanced sentiment analysis</span> powered by
+          a BERT-based multi-label classifier. Enter any text to identify the
+          emotions expressed within.
+        </p>
+      </section>
+
+      <section class="card input-section neon-glow">
+        <div class="card-header">
+          <h2><i class="fas fa-keyboard neon-icon"></i> Input Text</h2>
+        </div>
+        <div class="input-container">
+          <textarea
+            id="inputText"
+            placeholder="Type your text here... (e.g., 'I'm feeling happy and excited about this new project!')"
+            rows="5"
+          ></textarea>
+          <div class="button-container">
+            <button id="analyzeBtn" class="btn primary-btn neon-button">
+              <i class="fas fa-search"></i> Analyze Emotions
+            </button>
+            <button id="clearBtn" class="btn secondary-btn">
+              <i class="fas fa-eraser"></i> Clear
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="card result-section neon-glow">
+        <div class="card-header">
+          <h2><i class="fas fa-chart-bar neon-icon"></i> Analysis Results</h2>
+        </div>
+        <div class="result-container" id="resultContainer">
+          <div id="loadingIndicator" class="loading-indicator hidden">
+            <div class="neon-spinner"></div>
+            <p>Analyzing emotions...</p>
+            <div class="pulse-dots">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+          <div id="result" class="result hidden">
+            <!-- Results will be displayed here -->
+          </div>
+          <div id="initialState" class="initial-state">
+            <div class="emotion-icons">
+              <i class="fas fa-smile neon-icon-pulse"></i>
+              <i class="fas fa-angry neon-icon-pulse"></i>
+              <i class="fas fa-sad-tear neon-icon-pulse"></i>
+              <i class="fas fa-surprise neon-icon-pulse"></i>
+            </div>
+            <p>Your emotion analysis results will appear here</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="card info-section neon-glow">
+        <div class="card-header">
+          <h2><i class="fas fa-info-circle neon-icon"></i> How It Works</h2>
+        </div>
+        <div class="info-content">
+          <div class="info-item">
+            <div class="info-icon neon-circle">
+              <i class="fas fa-keyboard"></i>
+            </div>
+            <div class="info-text">
+              <h3>Enter Text</h3>
+              <p>
+                Type or paste any text you want to analyze for emotional content
+              </p>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon neon-circle">
+              <i class="fas fa-robot"></i>
+            </div>
+            <div class="info-text">
+              <h3>AI Analysis</h3>
+              <p>
+                Our BERT-based model analyzes the emotional content of your text
+              </p>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon neon-circle">
+              <i class="fas fa-chart-pie"></i>
+            </div>
+            <div class="info-text">
+              <h3>View Results</h3>
+              <p>
+                See a detailed breakdown of the emotions detected in your text
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-content">
+        <div class="footer-logo">
+          <i class="fas fa-brain neon-icon"></i>
+          <span>Emotion Analyzer</span>
+        </div>
+        <p>BERT-based Multi-label Emotion Classification</p>
+        <div class="footer-links">
+          <a href="#"><i class="fas fa-code"></i> About</a>
+          <a href="#"><i class="fas fa-file-alt"></i> Documentation</a>
+          <a href="#"><i class="fas fa-question-circle"></i> Help</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Updated path for Flask static files -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  </body>
+</html>

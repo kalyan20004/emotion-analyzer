@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>500 - Server Error | Emotion Analyzer</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Orbitron:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="background-grid"></div>
+    <div class="neon-particles">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <header>
+      <div class="logo">
+        <i class="fas fa-brain"></i>
+        <span class="neon-text">Emotion AI</span>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="error-page">
+        <div class="error-content">
+          <div class="error-code neon-text">500</div>
+          <h1 class="error-title">Internal Server Error</h1>
+          <p class="error-description">
+            Oops! Our AI seems to be having an emotional breakdown.
+            <br />We're working to get things back to normal as quickly as
+            possible.
+          </p>
+          <div class="error-actions">
+            <a
+              href="{{ url_for('index') }}"
+              class="btn primary-btn neon-button"
+            >
+              <i class="fas fa-home"></i> Go Home
+            </a>
+            <button onclick="location.reload()" class="btn secondary-btn">
+              <i class="fas fa-redo"></i> Try Again
+            </button>
+          </div>
+          <div class="error-suggestions">
+            <h3>What went wrong?</h3>
+            <ul>
+              <li>
+                <i class="fas fa-server"></i> The server encountered an
+                unexpected error
+              </li>
+              <li>
+                <i class="fas fa-database"></i> Database connection might be
+                unstable
+              </li>
+              <li>
+                <i class="fas fa-brain"></i> AI model might be temporarily
+                unavailable
+              </li>
+            </ul>
+            <p
+              style="
+                margin-top: 1rem;
+                font-size: 0.9rem;
+                color: var(--muted-text);
+              "
+            >
+              If the problem persists, please try again in a few minutes.
+            </p>
+          </div>
+        </div>
+        <div class="error-animation">
+          <div class="glitch-container">
+            <div class="brain-icon">
+              <i class="fas fa-brain"></i>
+            </div>
+            <div class="glitch-overlay"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-content">
+        <div class="footer-logo">
+          <i class="fas fa-brain neon-icon"></i>
+          <span>Emotion Analyzer</span>
+        </div>
+        <p>BERT-based Multi-label Emotion Classification</p>
+      </div>
+    </footer>
+
+    <style>
+      .error-page {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 60vh;
+        text-align: center;
+        padding: 2rem;
+      }
+
+      .error-code {
+        font-size: 8rem;
+        font-family: "Orbitron", monospace;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        background: linear-gradient(45deg, #ff006e, #ff4081);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: error-glow 2s infinite alternate;
+      }
+
+      .error-title {
+        font-size: 2.5rem;
+        color: var(--text-primary);
+        margin-bottom: 1rem;
+        font-family: "Orbitron", monospace;
+      }
+
+      .error-description {
+        font-size: 1.1rem;
+        color: var(--muted-text);
+        margin-bottom: 2rem;
+        max-width: 500px;
+        line-height: 1.6;
+      }
+
+      .error-actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+      }
+
+      .error-suggestions {
+        background: rgba(255, 0, 110, 0.1);
+        border: 1px solid rgba(255, 0, 110, 0.3);
+        border-radius: 15px;
+        padding: 1.5rem;
+        margin-top: 2rem;
+        backdrop-filter: blur(10px);
+      }
+
+      .error-suggestions h3 {
+        color: #ff4081;
+        margin-bottom: 1rem;
+      }
+
+      .error-suggestions ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .error-suggestions li {
+        padding: 0.5rem 0;
+        color: var(--muted-text);
+        text-align: left;
+      }
+
+      .error-suggestions li i {
+        color: #ff006e;
+        margin-right: 0.5rem;
+        width: 20px;
+      }
+
+      .glitch-container {
+        position: relative;
+        margin-top: 2rem;
+      }
+
+      .brain-icon {
+        font-size: 4rem;
+        color: #ff006e;
+        animation: glitch 2s infinite;
+      }
+
+      .glitch-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 0, 110, 0.1),
+          transparent
+        );
+        animation: scan 3s infinite;
+      }
+
+      @keyframes error-glow {
+        0% {
+          text-shadow: 0 0 20px #ff006e;
+        }
+        100% {
+          text-shadow: 0 0 40px #ff006e, 0 0 60px #ff4081;
+        }
+      }
+
+      @keyframes glitch {
+        0%,
+        100% {
+          transform: translateX(0);
+        }
+        10% {
+          transform: translateX(-2px) translateY(1px);
+        }
+        20% {
+          transform: translateX(2px) translateY(-1px);
+        }
+        30% {
+          transform: translateX(-1px) translateY(2px);
+        }
+        40% {
+          transform: translateX(1px) translateY(-2px);
+        }
+        50% {
+          transform: translateX(-2px) translateY(1px);
+        }
+        60% {
+          transform: translateX(2px) translateY(-1px);
+        }
+        70% {
+          transform: translateX(-1px) translateY(2px);
+        }
+        80% {
+          transform: translateX(1px) translateY(-2px);
+        }
+        90% {
+          transform: translateX(-2px) translateY(1px);
+        }
+      }
+
+      @keyframes scan {
+        0% {
+          transform: translateX(-100%);
+        }
+        100% {
+          transform: translateX(100%);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .error-code {
+          font-size: 5rem;
+        }
+
+        .error-title {
+          font-size: 2rem;
+        }
+
+        .error-actions {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .brain-icon {
+          font-size: 3rem;
+        }
+      }
+    </style>
+  </body>
+</html>
