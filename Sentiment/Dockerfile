@@ -1,44 +1,32 @@
-# Use a specific and stable Python base image
-FROM python:3.10.12-slim-bullseye
+FROM python:3.10-slim
 
-# Set the working directory inside the container
+# Set working directory
 WORKDIR /app
 
-# Install system dependencies in a single layer and clean up
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
-    build-essential \
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
     gcc \
-    libssl-dev \
-    libffi-dev \
-    ca-certificates \
-    curl \
-    && apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+    g++ \
+    && rm -rf /var/lib/apt/lists/*
 
-# Update CA certificates for SSL connections
-RUN update-ca-certificates
-
-# Copy requirements file separately to leverage Docker cache
+# Copy requirements first for better caching
 COPY requirements.txt .
 
-# Upgrade pip and install Python dependencies
-RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt
+# Install Python dependencies
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Set environment variables
-ENV PORT=8000 \
-    PYTHONDONTWRITEBYTECODE=1 \
-    PYTHONUNBUFFERED=1 \
-    # Don't include credentials here - they should come from environment variables
-    # at runtime or through render.yaml
-    DB_NAME="emotion_analyzer"
-
-# Copy the application code
+# Copy application code
 COPY . .
 
-# Expose FastAPI port
-EXPOSE 8000
+# Create necessary directories
+RUN mkdir -p templates static/css static/js app
 
-# Run FastAPI app using Uvicorn with a single worker
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "1"]
+# Expose port
+EXPOSE 5000
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
+    CMD curl -f http://localhost:5000/health || exit 1
+
+# Run the application
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--workers", "1", "--timeout", "120", "--keep-alive", "2", "main:app"]
