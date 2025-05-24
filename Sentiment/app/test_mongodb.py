@@ -18,7 +18,7 @@ logger = logging.getLogger("test_mongodb")
 load_dotenv()
 
 # Get MongoDB URI from environment
-MONGO_URI = os.environ.get("MONGO_URI", "mongodb+srv://kalyannn:kalyan123@cluster0.5dyy5f8.mongodb.net/?retryWrites=true&w=majority&tls=true&tlsInsecure=false&appName=Cluster0")
+MONGO_URI = os.environ.get("MONGO_URI", "")
 DB_NAME = os.environ.get("DB_NAME", "emotion_analyzer")
 
 if not MONGO_URI:
