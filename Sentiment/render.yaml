@@ -1,19 +1,25 @@
 services:
   - type: web
-    name: emotion-analyzer
-    env: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn --bind 0.0.0.0:$PORT main:app
+    name: emotion-analyzer-api
+    runtime: docker
+    repo: https://github.com/kalyan20004/emotion-analyzer
     plan: free
+    rootDir: Sentiment # Specify the root directory where your code is located
+    dockerfilePath: ./Dockerfile
     envVars:
-      - key: PYTHON_VERSION
-        value: 3.10.0
       - key: MONGO_URI
+        value: "mongodb+srv://kalyan:${MONGO_PASSWORD}@cluster0.5dyy5f8.mongodb.net/?retryWrites=true&w=majority&tls=true&tlsInsecure=false&appName=Cluster0"
+        sync: false
+      - key: MONGO_PASSWORD
         sync: false
       - key: DB_NAME
         value: emotion_analyzer
-      - key: SECRET_KEY
-        generateValue: true
-      - key: FLASK_ENV
-        value: production
+      - key: MODEL_HF_PATH
+        value: NNKalyan/emotion-analyzer-model
+      - key: USE_LOCAL_MODEL
+        value: "False"
+      - key: HF_TOKEN
+        sync: false
     healthCheckPath: /health
+    # Increase timeout for health checks
+    autoDeploy: true
